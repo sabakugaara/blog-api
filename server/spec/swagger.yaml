@@ -1,0 +1,16 @@
+swagger: "2.0"
+info:
+  version: 0.0.0
+  title: personal blog
+host: localhost:8080
+basePath: /api
+schemes:
+  - http
+  - https
+consumes:
+  - application/json
+produces:
+  - application/json
+tags:
+  - name: example
+    description: 示例
