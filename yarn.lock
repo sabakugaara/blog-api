@@ -315,7 +315,7 @@ async-each@^1.0.0:
   version "1.0.1"
   resolved "http://registry.npm.taobao.org/async-each/download/async-each-1.0.1.tgz#19d386a1d9edc6e7c1c85d388aedbcc56d33602d"
 
-async@0.2.x, async@~0.2.9:
+async@0.2.x, async@~0.2.10, async@~0.2.9:
   version "0.2.10"
   resolved "http://registry.npm.taobao.org/async/download/async-0.2.10.tgz#b6bbe0b0674b9d719708ca38de8c237cb526c3d1"
 
@@ -704,7 +704,7 @@ bluebird@3.2.1:
   version "3.2.1"
   resolved "http://registry.npm.taobao.org/bluebird/download/bluebird-3.2.1.tgz#3cecf3504904c30ce3e79c170877e893a11910fd"
 
-bluebird@^3.3.4, bluebird@^3.4.6:
+bluebird@^3.3.4, bluebird@^3.4.6, bluebird@^3.5.1:
   version "3.5.1"
   resolved "http://registry.npm.taobao.org/bluebird/download/bluebird-3.5.1.tgz#d9551f9de98f1fcda1e683d17ee91a0602ee2eb9"
 
@@ -2050,7 +2050,7 @@ express-session@^1.15.0:
     uid-safe "~2.1.5"
     utils-merge "1.0.1"
 
-express@^4.14.0:
+express@^4.14.0, express@^4.16.2:
   version "4.16.2"
   resolved "http://registry.npm.taobao.org/express/download/express-4.16.2.tgz#e35c6dfe2d64b7dca0a5cd4f21781be3299e076c"
   dependencies:
@@ -3807,6 +3807,10 @@ lru-cache@^4.0.1:
     pseudomap "^1.0.2"
     yallist "^2.1.2"
 
+lru-cache@~2.5.0:
+  version "2.5.2"
+  resolved "http://registry.npm.taobao.org/lru-cache/download/lru-cache-2.5.2.tgz#1fddad938aae1263ce138680be1b3f591c0ab41c"
+
 lsmod@~0.0.3:
   version "0.0.3"
   resolved "http://registry.npm.taobao.org/lsmod/download/lsmod-0.0.3.tgz#17e13d4e1ae91750ea5653548cd89e7147ad0244"
@@ -4054,7 +4058,15 @@ multipipe@^0.1.2:
   dependencies:
     duplexer2 "0.0.2"
 
-mustache@^2.3.0:
+mustache-express@^1.2.5:
+  version "1.2.5"
+  resolved "http://registry.npm.taobao.org/mustache-express/download/mustache-express-1.2.5.tgz#172a48445a5de5cadc9f057f6a92a4afca07ae14"
+  dependencies:
+    async "~0.2.10"
+    lru-cache "~2.5.0"
+    mustache "~2.3.0"
+
+mustache@~2.3.0:
   version "2.3.0"
   resolved "http://registry.npm.taobao.org/mustache/download/mustache-2.3.0.tgz#4028f7778b17708a489930a6e52ac3bca0da41d0"
 

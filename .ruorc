@@ -1,5 +1,6 @@
 {
     "name": "my-blog",
     "source": "server",
-    "target": "server"
+    "target": "server",
+    "specPath": "/doc/spec"
 }

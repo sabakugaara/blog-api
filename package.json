@@ -5,7 +5,9 @@
     "dev": "ruo"
   },
   "dependencies": {
-    "mustache": "^2.3.0",
+    "bluebird": "^3.5.1",
+    "express": "^4.16.2",
+    "mustache-express": "^1.2.5",
     "ruo": "^1.7.1"
   },
   "devDependencies": {
