@@ -1,21 +1,27 @@
-const Promise = require('bluebird')
+const moment = require('moment')
 const express = require('express')
+
+const service = require('../service/index')
+
 const router = express.Router()
 
 router.get('/', async function (req, res) {
-  await Promise.delay(1000)
+  const page = req.query.page || 1
+  const data = await service.getArticlesAsync(page)
 
+  const nextPage = data.pagination.nextPage ? ('/?page=' + data.pagination.nextPage) : ''
+  const prevPage = data.pagination.prevPage ? ('/?page=' + data.pagination.prevPage) : ''
+  const posts = data.articles.map((article) => {
+    const date = moment(article.date).format('MMM DD, YYYY')
+    article.date = date
+    return article
+  })
   res.render('index', {
-    posts: [{
-      date: 'Jul 11, 2015',
-      href: '/jekyll/pixyll/2015/07/11/announcing-pixyll-version-2/',
-      title: 'Announcing Version 2.0',
-      summary: 'Now, Pixyll is lighter weight and more customizable than before.'
-    }],
-    currentPage: 2,
-    totalPages: 3,
-    nextPage: '/page3',
-    prevPage: '/page1'
+    posts,
+    currentPage: page,
+    totalPages: data.pagination.count,
+    nextPage,
+    prevPage
   })
 })
 

@@ -7,6 +7,8 @@
   "dependencies": {
     "bluebird": "^3.5.1",
     "express": "^4.16.2",
+    "ioredis": "^3.2.2",
+    "moment": "^2.20.1",
     "mustache-express": "^1.2.5",
     "ruo": "^1.7.1"
   },
