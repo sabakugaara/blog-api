@@ -31,6 +31,18 @@ exports.getArticlesAsync = async function (page = 1, orderBy = 'date', order = '
   const nextPage = page < pages ? page + 1 : false
   const prevPage = page > 1 ? page - 1 : false
 
+  if (page > pages || page < 1) {
+    return {
+      articles: [],
+      pagination: {
+        nextPage: false,
+        prevPage: false,
+        pages,
+        count
+      }
+    }
+  }
+
   const ids = await Article.pagingByDateAsync(limit, offset)
 
   const articles = []
