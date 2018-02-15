@@ -22,7 +22,6 @@ exports.addAsync = async function ({
 }) {
   const id = await generateNewArticleIdAsync()
 
-  console.log(title, content, date, url)
   // TODO summary
   const key = `${PREFIX}header:${id}`
   const multi = redis.multi()
@@ -49,8 +48,26 @@ exports.indexDateAsync = async (id, date) => {
   return count === 1
 }
 
-exports.getAsync = async (id) => {
-  const key = `${PREFIX}header:${id}`
+/**
+ * store url and article id relationship
+ */
+exports.collectUrlAsync = async (articleId, url) => {
+  const key = `${PREFIX}collect:url`
+  const result = await redis.hget(key, url)
+  if (result) {
+    throw new Error('url has been existed.')
+  }
+  await redis.hset(key, url, articleId)
+}
+
+exports.getArticleIdByUrl = async (url) => {
+  const key = `${PREFIX}collect:url`
+  const result = await redis.hget(key, url)
+  return result
+}
+
+exports.getAsync = async (articleId) => {
+  const key = `${PREFIX}header:${articleId}`
   const article = await redis.hgetall(key)
   article.date = Number(article.date)
   return article

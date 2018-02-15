@@ -10,8 +10,12 @@ exports.addNewArticleAsync = async function ({title, content, url}) {
     date
   })
 
-  // TODO log index failed
-  await Article.indexDateAsync(articleId, date)
+  const indexed = await Article.indexDateAsync(articleId, date)
+  if (!indexed) {
+    console.error(`index article id ${articleId} with date ${date} failed.`)
+  }
+
+  await Article.collectUrlAsync(articleId, url)
 }
 
 /**
@@ -60,4 +64,14 @@ exports.getArticlesAsync = async function (page = 1, orderBy = 'date', order = '
       pages
     }
   }
+}
+
+exports.getArticleByUrlAsync = async (url) => {
+  const articleId = await Article.getArticleIdByUrl(url)
+  if (!articleId) {
+    throw new Error('article not found.')
+  }
+
+  const article = await Article.getAsync(articleId)
+  return article
 }

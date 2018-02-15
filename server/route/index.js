@@ -14,6 +14,7 @@ router.get('/', async function (req, res) {
   const posts = data.articles.map((article) => {
     const date = moment(article.date).format('MMM DD, YYYY')
     article.date = date
+    article.url = '/blog' + article.url
     return article
   })
   res.render('index', {
@@ -22,6 +23,19 @@ router.get('/', async function (req, res) {
     totalPages: data.pagination.pages,
     nextPage,
     prevPage
+  })
+})
+
+router.get('/blog/*', async function (req, res) {
+  const url = '/' + req.params[0]
+  const article = await service.getArticleByUrlAsync(url)
+  const minutes = Math.ceil(article.content.length / 300)
+  // TODO 404
+  res.render('blog', {
+    content: article.content,
+    title: article.title,
+    date: moment(article.date).format('MMM DD, YYYY'),
+    minutes: minutes + (minutes > 1 ? ' minutes' : ' minute')
   })
 })
 
