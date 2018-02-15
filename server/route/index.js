@@ -6,7 +6,7 @@ const service = require('../service/index')
 const router = express.Router()
 
 router.get('/', async function (req, res) {
-  const page = req.query.page || 1
+  const page = parseInt(req.query.page, 10) || 1
   const data = await service.getArticlesAsync(page)
 
   const nextPage = data.pagination.nextPage ? ('/?page=' + data.pagination.nextPage) : ''
@@ -19,7 +19,7 @@ router.get('/', async function (req, res) {
   res.render('index', {
     posts,
     currentPage: page,
-    totalPages: data.pagination.count,
+    totalPages: data.pagination.pages,
     nextPage,
     prevPage
   })

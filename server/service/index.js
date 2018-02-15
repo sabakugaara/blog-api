@@ -28,8 +28,8 @@ exports.getArticlesAsync = async function (page = 1, orderBy = 'date', order = '
   const offset = (page - 1) * perPage
   const pages = Math.ceil(count / perPage)
 
-  const nextPage = page < pages - 1 ? page + 1 : false
-  const prevPage = page - 1 > 0 ? page - 1 : false
+  const nextPage = page < pages ? page + 1 : false
+  const prevPage = page > 1 ? page - 1 : false
 
   const ids = await Article.pagingByDateAsync(limit, offset)
 
@@ -44,7 +44,8 @@ exports.getArticlesAsync = async function (page = 1, orderBy = 'date', order = '
     pagination: {
       nextPage,
       prevPage,
-      count
+      count,
+      pages
     }
   }
 }
